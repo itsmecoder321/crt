@@ -207,6 +207,14 @@ def parse_uploaded_document(file, filetype):
         raise ValueError("Unsupported format")
     return text, clauses
 
+
+
+# ---- Save Outputs ----
+def save_json(data, filename):
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+
+
 # ---- Process Uploaded File ----
 if uploaded_file:
     name_without_ext = os.path.splitext(uploaded_file.name)[0].lower()
