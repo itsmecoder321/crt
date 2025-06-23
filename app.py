@@ -254,7 +254,9 @@ if uploaded_file:
             st.session_state["clause_summaries"] = clause_summaries
 
             # Save outputs
-            save_json(analyzed, os.path.join(output_dir, f"classified_{name_without_ext}.json"))
+            with tempfile.TemporaryDirectory() as output_dir:
+                filepath = os.path.join(output_dir, f"classified_{name_without_ext}.json")
+                save_json(analyzed, filepath)
             
 
     analyzed = st.session_state["analyzed"]
